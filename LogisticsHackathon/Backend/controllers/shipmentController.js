@@ -122,7 +122,7 @@ export const extractReceipt = async (req, res) => {
     formData.append('file', fs.createReadStream(req.file.path), req.file.originalname)
 
     // Send file to Python API (assumed running on port 5000)
-    const pythonResponse = await axios.post('http://127.0.0.1:5000/api/extract', formData, {
+    const pythonResponse = await axios.post('https://lorri-ai-hackathon-agent1.onrender.com/api/extract', formData, {
       headers: {
         ...formData.getHeaders()
       }
@@ -204,7 +204,7 @@ export const generateOTP = async (req, res) => {
 
     let otp;
     try {
-      const agentResponse = await axios.post(`http://127.0.0.1:8001/generate-otp?lr_number=${encodeURIComponent(shipment.lrNumber)}&receiver_contact=${encodeURIComponent(shipment.consigneeContact)}`, {})
+      const agentResponse = await axios.post(`https://lorri-ai-hackathon-agent2.onrender.com/generate-otp?lr_number=${encodeURIComponent(shipment.lrNumber)}&receiver_contact=${encodeURIComponent(shipment.consigneeContact)}`, {})
       otp = agentResponse.data.generated_otp.toString()
       console.log(`[OTP DEBUG] Generated OTP: ${otp} for LR: ${shipment.lrNumber}`)
     } catch (agentError) {
@@ -300,7 +300,7 @@ export const verifyDelivery = async (req, res) => {
     let agentVerified = false
     console.log(`[OTP DEBUG] Verifying Entered OTP: ${otp} (Type: ${typeof otp}) for LR: ${shipment.lrNumber}`)
     try {
-      const agentVerifyRes = await axios.post(`http://localhost:8001/verify-otp?lr_number=${encodeURIComponent(shipment.lrNumber)}&entered_otp=${otp}`, {})
+      const agentVerifyRes = await axios.post(`https://lorri-ai-hackathon-agent2.onrender.com/verify-otp?lr_number=${encodeURIComponent(shipment.lrNumber)}&entered_otp=${otp}`, {})
       console.log(`[OTP DEBUG] Agent 2 Response:`, agentVerifyRes.data)
       if (agentVerifyRes.data.delivery_verification === 'SUCCESS') {
         agentVerified = true
@@ -353,7 +353,7 @@ const performExtraction = async (filePath, type) => {
   try {
     const formData = new FormData()
     formData.append('file', fs.createReadStream(filePath))
-    const url = `http://127.0.0.1:8002/api/extract-${type}`
+    const url = `https://lorri-ai-hackathon-agent3.onrender.com/api/extract-${type}`
     const response = await axios.post(url, formData, {
       headers: { ...formData.getHeaders() }
     })
