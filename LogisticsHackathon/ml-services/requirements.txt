@@ -1,10 +1,10 @@
+flask
 fastapi
 uvicorn
-pydantic
 numpy
 pandas
 opencv-python
 pytesseract
-python-multipart
 scikit-learn
+python-multipart
 requests
