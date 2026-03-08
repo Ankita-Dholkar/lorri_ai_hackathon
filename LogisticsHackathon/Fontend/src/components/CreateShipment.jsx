@@ -46,7 +46,7 @@ const CreateShipment = ({ user, onBack }) => {
   useEffect(() => {
     const fetchCarriers = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/shipments/carriers', { withCredentials: true })
+        const res = await axios.get('https://lorri-ai-hackathon.onrender.com/api/shipments/carriers', { withCredentials: true })
         setCarriers(res.data)
       } catch (err) {
         console.error('Failed to fetch carriers:', err)
@@ -103,7 +103,7 @@ const CreateShipment = ({ user, onBack }) => {
     formData.append('receipt', file)
 
     try {
-      const res = await axios.post('http://localhost:8000/api/shipments/extract', formData, {
+      const res = await axios.post('https://lorri-ai-hackathon.onrender.com/api/shipments/extract', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -171,7 +171,7 @@ const CreateShipment = ({ user, onBack }) => {
 
     setLoading(true)
     try {
-      await axios.post('http://localhost:8000/api/shipments', {
+      await axios.post('https://lorri-ai-hackathon.onrender.com/api/shipments', {
         ...form,
         consignorContact: sanitizePhone(form.consignorContact),
         consigneeContact: sanitizePhone(form.consigneeContact),

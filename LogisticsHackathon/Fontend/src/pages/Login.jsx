@@ -15,7 +15,7 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/login', form, {
+      const response = await axios.post('https://lorri-ai-hackathon.onrender.com/api/auth/login', form, {
         withCredentials: true
       })
       toast.success('Logged in successfully!')

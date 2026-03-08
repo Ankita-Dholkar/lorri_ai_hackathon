@@ -32,7 +32,7 @@ const CarrierDashboard = ({ user }) => {
   useEffect(() => {
     const fetchShipments = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/shipments', { withCredentials: true })
+        const res = await axios.get('https://lorri-ai-hackathon.onrender.com/api/shipments', { withCredentials: true })
         setShipments(res.data)
       } catch (err) {
         console.error('Failed to fetch shipments:', err)
@@ -47,7 +47,7 @@ const CarrierDashboard = ({ user }) => {
   const handleDeleteShipment = async (id) => {
     if (!window.confirm("Are you sure you want to delete this shipment?")) return;
     try {
-      await axios.delete(`http://localhost:8000/api/shipments/${id}`, { withCredentials: true })
+      await axios.delete(`https://lorri-ai-hackathon.onrender.com/api/shipments/${id}`, { withCredentials: true })
       setShipments(shipments.filter(s => s._id !== id))
       toast.success('Shipment deleted successfully')
     } catch (err) {
@@ -77,7 +77,7 @@ const CarrierDashboard = ({ user }) => {
     try {
       setDeliveryLoading(true)
       const res = await axios.post(
-        `http://localhost:8000/api/shipments/${selectedShipment._id}/deliver/generate-otp`,
+        `https://lorri-ai-hackathon.onrender.com/api/shipments/${selectedShipment._id}/deliver/generate-otp`,
         { 
           receiverContact: selectedShipment.consigneeContact,
           receiverEmail: selectedShipment.consigneeEmail
@@ -131,7 +131,7 @@ const CarrierDashboard = ({ user }) => {
     try {
       setDeliveryLoading(true)
       const res = await axios.post(
-        `http://localhost:8000/api/shipments/${selectedShipment._id}/deliver/verify`,
+        `https://lorri-ai-hackathon.onrender.com/api/shipments/${selectedShipment._id}/deliver/verify`,
         {
           otp: otpInput,
           location: gpsLocation,
@@ -171,7 +171,7 @@ const CarrierDashboard = ({ user }) => {
       if (invoiceForm.fuelReceipt) formData.append('fuelReceipt', invoiceForm.fuelReceipt)
 
       const res = await axios.post(
-        `http://localhost:8000/api/shipments/${selectedShipment._id}/request-invoice`,
+        `https://lorri-ai-hackathon.onrender.com/api/shipments/${selectedShipment._id}/request-invoice`,
         formData,
         { 
           headers: { 'Content-Type': 'multipart/form-data' },

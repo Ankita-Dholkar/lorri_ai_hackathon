@@ -19,7 +19,7 @@ const Signup = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/register', form, {
+      const response = await axios.post('https://lorri-ai-hackathon.onrender.com/api/auth/register', form, {
         withCredentials: true
       })
       toast.success('Account created successfully!')

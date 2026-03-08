@@ -12,7 +12,7 @@ const LogisticsCompanyDashboard = ({ user, onCreateShipment }) => {
   useEffect(() => {
     const fetchShipments = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/shipments', { withCredentials: true })
+        const res = await axios.get('https://lorri-ai-hackathon.onrender.com/api/shipments', { withCredentials: true })
         setShipments(res.data)
       } catch (err) {
         console.error('Failed to fetch shipments:', err)
@@ -27,7 +27,7 @@ const LogisticsCompanyDashboard = ({ user, onCreateShipment }) => {
     try {
       setApproving(true)
       const res = await axios.patch(
-        `http://localhost:8000/api/shipments/${selectedShipment._id}/approve-invoice`,
+        `https://lorri-ai-hackathon.onrender.com/api/shipments/${selectedShipment._id}/approve-invoice`,
         {},
         { withCredentials: true }
       )
@@ -45,7 +45,7 @@ const LogisticsCompanyDashboard = ({ user, onCreateShipment }) => {
   const handleDeleteShipment = async (id) => {
     if (!window.confirm("Are you sure you want to delete this shipment?")) return;
     try {
-      await axios.delete(`http://localhost:8000/api/shipments/${id}`, { withCredentials: true })
+      await axios.delete(`https://lorri-ai-hackathon.onrender.com/api/shipments/${id}`, { withCredentials: true })
       setShipments(shipments.filter(s => s._id !== id))
     } catch (err) {
       console.error('Failed to delete shipment', err)
