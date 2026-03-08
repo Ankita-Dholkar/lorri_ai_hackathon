@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="./Venus%20Vertex.png" width="100%">
+ <img width="933" height="525" alt="Venus Vertex (1)" src="https://github.com/user-attachments/assets/d690cdf8-7eb6-4c03-ab9f-9f92d01d8fb2" />
+
 </p>
 
 <br>
