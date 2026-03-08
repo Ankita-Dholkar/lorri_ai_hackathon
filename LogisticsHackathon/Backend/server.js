@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 import receiptRoutes from "./routes/receiptRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import shipmentRoutes from "./routes/shipmentRoutes.js"
-import connectDb from "./config/connectDB.js"
+import connectDb from "./config/connectDb.js"
 
 dotenv.config()
 
